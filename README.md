@@ -29,3 +29,9 @@ Path Intellisense by Christian Kohler
 Prettier - Code formatter by Esben Petersen
 
 TSLint by egamma
+
+# Useful commands
+
+ng serve
+
+ng g guard auth --spec=false
