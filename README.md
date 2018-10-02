@@ -53,6 +53,10 @@ dotnet ef database drop  -> !WARNING! all data will be lost, but in case you wan
 
 dotnet ef database update -> apply migrations to database
 
+#Seed Data
+
+https://www.json-generator.com/#
+
 # C# Visual Studio Code
 
 prop TAB
