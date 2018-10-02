@@ -40,7 +40,7 @@ namespace DatingApp.API.Migrations
                 nullable: true);
 
             migrationBuilder.AddColumn<string>(
-                name: "Introducation",
+                name: "Introduction",
                 table: "Users",
                 nullable: true);
 
@@ -119,7 +119,7 @@ namespace DatingApp.API.Migrations
                 table: "Users");
 
             migrationBuilder.DropColumn(
-                name: "Introducation",
+                name: "Introduction",
                 table: "Users");
 
             migrationBuilder.DropColumn(
