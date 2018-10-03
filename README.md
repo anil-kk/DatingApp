@@ -59,6 +59,12 @@ prop TAB
 ctor TAB
 
 CTRL +  .  -> Quick Fix
+SHIFT + ALT + F -> Format Document
+CTRL + , -> Settings
+ALT + O -> Toggle CSS file of component
+ALT + U -> Toggle .ts file of component
+ALT + I -> Toggle HTML file of component
+ALT + P -> Toggle specs file of component
 
 # Seed Data
 
