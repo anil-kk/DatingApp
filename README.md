@@ -38,7 +38,7 @@ ng serve
 ng g guard auth --spec=false
 
 ## AspDotNetCore
-
+```
 dotnet watch run
 
 dotnet ef migrations add SomeEntityOrExtensionToAnEntity -> add migrations
@@ -52,9 +52,10 @@ dotnet ef migrations remove -> removes last migration that is not applied to dat
 dotnet ef database drop  -> !WARNING! all data will be lost, but in case you want to update complicated schema
 
 dotnet ef database update -> apply migrations to database
-
+```
 # C# Visual Studio Code
 
+```
 prop TAB
 ctor TAB
 
@@ -65,7 +66,7 @@ ALT + O -> Toggle CSS file of component
 ALT + U -> Toggle .ts file of component
 ALT + I -> Toggle HTML file of component
 ALT + P -> Toggle specs file of component
-
+```
 # Seed Data
 
 https://www.json-generator.com/#
