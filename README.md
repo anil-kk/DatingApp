@@ -70,3 +70,25 @@ ALT + P -> Toggle specs file of component
 
 https://www.json-generator.com/#
 
+# Sample appsettings.json config required for this app, secret info ignored on git repository
+{
+  "AppSettings":{
+    "Token": "xxxxxx-xxxxxx-xxxxxx" 
+  },
+  "ConnectionStrings":{
+    "DefaultConnection":"xxxxxx-xxxxxx-xxxxxx"
+  },
+  "Logging": {
+    "LogLevel": {
+      "Default": "Warning"
+    }
+  },
+  "AllowedHosts": "*",
+  "CloudinarySettings": {
+    "CloudName": "xxxxxx-xxxxxx-xxxxxx",
+    "ApiKey":"xxxxxx-xxxxxx-xxxxxx" ,
+    "ApiSecret": "xxxxxx-xxxxxx-xxxxxx"
+  }
+}
+
+
