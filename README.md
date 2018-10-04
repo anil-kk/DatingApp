@@ -71,6 +71,7 @@ ALT + P -> Toggle specs file of component
 https://www.json-generator.com/#
 
 # Sample appsettings.json config required for this app, secret info ignored on git repository
+```json
 {
   "AppSettings":{
     "Token": "xxxxxx-xxxxxx-xxxxxx" 
@@ -90,5 +91,4 @@ https://www.json-generator.com/#
     "ApiSecret": "xxxxxx-xxxxxx-xxxxxx"
   }
 }
-
-
+```
