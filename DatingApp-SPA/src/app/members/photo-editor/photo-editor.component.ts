@@ -1,9 +1,11 @@
-import { Component, OnInit, Input } from '@angular/core';
+import { Component, OnInit, Input, EventEmitter, Output } from '@angular/core';
 import { FileUploader } from 'ng2-file-upload';
 
 import { Photo } from '../../_models/Photo';
 import { environment } from '../../../environments/environment';
 import { AuthService } from '../../_services/auth.service';
+import { UserService } from '../../_services/user.service';
+import { AlertifyService } from '../../_services/alertify.service';
 
 
 @Component({
@@ -13,11 +15,13 @@ import { AuthService } from '../../_services/auth.service';
 })
 export class PhotoEditorComponent implements OnInit {
   @Input() photos: Photo[];
+  @Output() mainPhotoUpdated = new EventEmitter();
+  currentMainPhoto: Photo;
 
   uploader: FileUploader;
   hasBaseDropZoneOver = false;
   baseUrl = environment.apiUrl;
-  constructor(private authService: AuthService) { }
+  constructor(private authService: AuthService, private userService: UserService, private alertify: AlertifyService) { }
 
   ngOnInit() {
     this.initUploader();
@@ -59,6 +63,18 @@ export class PhotoEditorComponent implements OnInit {
      'http://localhost:4200' is therefore not allowed access. The credentials mode of requests initiated by the XMLHttpRequest
       is controlled by the withCredentials attribute.*/
     this.uploader.onAfterAddingFile = (file) => {file.withCredentials = false; };
+  }
+
+  setMainPhoto(photo: Photo) {
+    this.userService.setMainPhoto(this.authService.decodedToken.nameid, photo.id).subscribe( () => {
+      this.alertify.success('Main photo Updated!');
+      this.currentMainPhoto = this.photos.filter( p => p.isMain === true)[0];
+      this.currentMainPhoto.isMain = false;
+      photo.isMain = true;
+      this.mainPhotoUpdated.emit(photo);
+    }, () => {
+      this.alertify.error('Error updating main photo, try again later!');
+    });
   }
 
 }
