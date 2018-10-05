@@ -15,7 +15,6 @@ import { AlertifyService } from '../../_services/alertify.service';
 })
 export class PhotoEditorComponent implements OnInit {
   @Input() photos: Photo[];
-  @Output() mainPhotoUpdated = new EventEmitter();
   currentMainPhoto: Photo;
 
   uploader: FileUploader;
@@ -71,7 +70,9 @@ export class PhotoEditorComponent implements OnInit {
       this.currentMainPhoto = this.photos.filter( p => p.isMain === true)[0];
       this.currentMainPhoto.isMain = false;
       photo.isMain = true;
-      this.mainPhotoUpdated.emit(photo);
+      this.authService.changeUserPhoto(photo.url);
+      this.authService.user.photoURL = photo.url;
+      localStorage.setItem('user', JSON.stringify(this.authService.user));
     }, () => {
       this.alertify.error('Error updating main photo, try again later!');
     });
