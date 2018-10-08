@@ -81,7 +81,7 @@ export class PhotoEditorComponent implements OnInit {
   deletePhoto(photo: Photo) {
     this.alertify.confirm('Are you sure, You want to delete this picture?', () => {
       this.userService.deletePhoto(this.authService.decodedToken.nameid, photo.id).subscribe( () => {
-        this.photos = this.photos.filter( p => p.id !== photo.id);
+        this.photos.splice(this.photos.findIndex( p => p.id === photo.id), 1);
     });
     });
   }
