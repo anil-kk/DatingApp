@@ -26,11 +26,11 @@
 
 
   <div class="form-group">
-    <input type="password" class="form-control" [ngClass]="{'is-invalid': (registerForm.get('confirmPassword').errors && registerForm.get('confirmPassword').touched)
-    || (registerForm.get('confirmPassword').touched && registerForm.hasError('mismatch')) }"
+    <input type="password" class="form-control" [ngClass]="{'is-invalid': registerForm.get('confirmPassword').errors && registerForm.get('confirmPassword').touched
+    || registerForm.get('confirmPassword').touched && registerForm.hasError('mismatch') }"
       formControlName="confirmPassword" placeholder="Confirm Password">
     <div class="invalid-feedback" *ngIf="registerForm.get('confirmPassword').hasError('required') && registerForm.get('confirmPassword').touched">
-      re enter password required!</div>
+      Password required!</div>
     <div class="invalid-feedback" *ngIf="registerForm.hasError('mismatch') && registerForm.get('confirmPassword').touched">
       Password mismatch!</div>
   </div>
