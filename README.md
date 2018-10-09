@@ -81,3 +81,5 @@ https://www.json-generator.com/#
   }
 }
 ```
+
+Note: This application is the result of coursework from Udemy by Neil Cummings  
