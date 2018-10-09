@@ -1,4 +1,6 @@
 using System;
+using System.Collections;
+using System.Collections.Generic;
 using System.Security.Claims;
 using System.Threading.Tasks;
 using AutoMapper;
@@ -37,16 +39,32 @@ namespace DatingApp.API.Controllers
 
             var messageFromRepo = await _repo.GetMessage(id);
 
-            if(messageFromRepo ==null)
+            if(messageFromRepo == null)
             {
                 return NotFound();
             }
 
-            var messageToReturn = _mapper.Map<MessageForCreationDto>(messageFromRepo);
+            var messageToReturn = _mapper.Map<MessageToReturnDto>(messageFromRepo);
 
             return Ok(messageToReturn);
         }
 
+        [HttpGet]
+        public async Task<IActionResult> GetMessagesForUser(int userId, [FromQuery] MessageParams messageParams)
+        {
+            if(userId != int.Parse(User.FindFirst(ClaimTypes.NameIdentifier).Value))
+            {
+                return Unauthorized();
+            }
+            messageParams.UserId = userId;
+
+            var messagesFromRepo = await _repo.GetMessagesForUser(messageParams);
+            var messages = _mapper.Map<IEnumerable<MessageToReturnDto>>(messagesFromRepo);
+
+            Response.AddPagination(messagesFromRepo.CurrentPage, messagesFromRepo.PageSize,
+            messagesFromRepo.TotalCount, messagesFromRepo.TotalPages);
+            return Ok(messages);
+        }
         [HttpPost]
         public async Task<IActionResult> CreateMessage(int userId, MessageForCreationDto messageForCreationDto)
         {
