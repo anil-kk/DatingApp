@@ -22,5 +22,7 @@ namespace DatingApp.API.Models
         public ICollection<Photo> Photos { get; set; } // One to Many relationship with Photo entity, requires Photo entity to have a User property and UserId property 
         public ICollection<Like> Likers { get; set; } //
         public ICollection<Like> Likees { get; set; }
+        public ICollection<Message> MessagesSent { get; set; }
+        public ICollection<Message> MessagesReceived { get; set; }
     }
 }
