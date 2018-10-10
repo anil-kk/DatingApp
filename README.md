@@ -24,6 +24,10 @@
 ng serve -o
 
 ng g guard auth --spec=false
+
+ng build
+
+ng build --prod
 ```
 ## AspDotNetCore
 ```
