@@ -21,7 +21,7 @@
 
 ## Angular
 ```
-ng serve
+ng serve -o
 
 ng g guard auth --spec=false
 ```
