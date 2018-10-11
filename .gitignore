@@ -3,3 +3,6 @@ DatingApp.API/appsettings.json
 
 DatingApp.API/wwwroot/*
 
+.vscode/settings.json
+DatingApp.API/mysql.sql
+
