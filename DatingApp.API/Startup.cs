@@ -15,6 +15,7 @@ using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.HttpsPolicy;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
+using Microsoft.EntityFrameworkCore.Diagnostics;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Logging;
@@ -35,7 +36,14 @@ namespace DatingApp.API
         // This method gets called by the runtime. Use this method to add services to the container.
         public void ConfigureServices(IServiceCollection services)
         {
-            services.AddDbContext<DataContext>(x => x.UseMySql(Configuration.GetConnectionString("DefaultConnection")));
+            services.AddDbContext<DataContext>(x => x.
+            UseMySql(Configuration.GetConnectionString("DefaultConnection"))
+            .ConfigureWarnings( warnings => {
+                //FIX: The Include operation for navigation '[p].Photos' is unnecessary and 
+                //was ignored because the navigation is not reachable in the final query results
+                warnings.Ignore(CoreEventId.IncludeIgnoredWarning);
+            })); 
+
             services.AddMvc().SetCompatibilityVersion(CompatibilityVersion.Version_2_1)
             .AddJsonOptions(options => {
                  //JsonSerializationException: Self referencing loop detected ex: User entity and Photo entity
@@ -122,7 +130,7 @@ namespace DatingApp.API
                 //app.UseHsts();
             }
 
-            seeder.SeedUsers();
+            //seeder.SeedUsers();
 
             //app.UseHttpsRedirection();
             app.UseCors(x => x.AllowAnyOrigin().AllowAnyMethod().AllowAnyHeader());
