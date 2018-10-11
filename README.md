@@ -86,4 +86,31 @@ https://www.json-generator.com/#
 }
 ```
 
+# MySql
+```
+mysql -u USERNAME -p
+
+show databases;
+use DATABASE_NAME;
+select * from TABLE_NAME;
+
+```
+
+# multiple environments in ASP.NET Core
+
+https://docs.microsoft.com/en-us/aspnet/core/fundamentals/environments?view=aspnetcore-2.1
+
+## Command Prompt
+
+set ASPNETCORE_ENVIRONMENT=Development
+
+set ASPNETCORE_ENVIRONMENT=Production
+
+## PowerShell
+
+$Env:ASPNETCORE_ENVIRONMENT = "Development"
+$Env:ASPNETCORE_ENVIRONMENT = "Production"
+
+
+
 Note: This application is the result of coursework from Udemy by Neil Cummings  
